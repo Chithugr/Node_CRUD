@@ -9,6 +9,6 @@ router.get('/healthCheck', (req, res) => {
   };
   return res.send(data).end();
 })
-router.use('/post', postRouter);
+router.use('/posts', postRouter);
 
 module.exports = router;

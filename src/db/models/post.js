@@ -24,7 +24,11 @@ const mongoose = require('mongoose');
 const { v4: uuidv4 } = require('uuid');
 
 const PostSchema = new mongoose.Schema({
-  id: uuidv4(),
+  id: {
+    type: String,
+    required: true,
+    unique: true
+  },
   title: {
     type: String,
     required: true,
@@ -43,5 +47,4 @@ const PostSchema = new mongoose.Schema({
   }
 )
 
-const Post = mongoose.model('PostModel', PostSchema);
-module.exports = Post;
+module.exports = mongoose.model('Post', PostSchema);
