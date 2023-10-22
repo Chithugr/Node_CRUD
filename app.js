@@ -16,7 +16,7 @@ app.post('/blog', (req, res) => {
     res.status(201).send(req.body);
 });
 
-app.put('/blog/:id',(req,res)=>{
+app.put('/blog/{id}',(req,res)=>{
     const id=req.params.id;
     const updatedBlog=req.body;
     const BlogIndex=blogs.findIndex((blog)=>blog.id==id);
@@ -29,7 +29,7 @@ app.put('/blog/:id',(req,res)=>{
     }
 });
 
-app.delete('/blog/:id',(req,res)=>{
+app.delete('/blog/{id}',(req,res)=>{
     const id=req.params.id;
     const BlogIndex=blogs.findIndex((blog)=>blog.id==id);
 
