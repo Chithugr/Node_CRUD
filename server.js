@@ -1,14 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const postRoutes = require('../router/posts');
+const routes = require('./src/router');
 
 
 const app = express();
 
 app.use(bodyParser.json());
 
-app.use('/api/posts', postRoutes);
+app.use('/api', routes);
 
 
 const PORT = process.env.PORT || 3000;

@@ -1,5 +1,5 @@
 // controllers/postController.ts
-import {request , response } from 'express';
+// import {request , response } from 'express';
 import Post from '../db/models/post';
 
 export const getAllPosts = async (req: Request, res: Response) => {
