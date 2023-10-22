@@ -1,7 +1,8 @@
 # Node_CRUD
 Crud Operationof blogs
 
-Step-1 Clone the project
+Step-1
+  Clone the project
 Step-2
   do `npm i`
 Step-3
