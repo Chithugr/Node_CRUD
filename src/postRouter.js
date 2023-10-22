@@ -1,5 +1,5 @@
 const express = require('express')
-const router = express(); // Use 'express.Router()' to create a router instance
+const router = express();
 const {
     getPostById,
     getAllPosts,
@@ -25,10 +25,8 @@ router.get('/:postId', async (req, res) => {
         const result = await getPostById({ postId });
         res.status(200).send(result);
     } catch (error) {
-
         console.error(error);
         res.status(500).send(error);
-        // throw error;
     }
 });
 router.post('/', async (req, res) => {
@@ -43,7 +41,6 @@ router.post('/', async (req, res) => {
 });
 router.put('/:id', async (req, res) => {
     try {
-
         const { title, content, categoryId } = req.body;
         const { id } = req.params;
         const result = await updatePost({ postId: id, title, content, categoryId })
@@ -56,10 +53,8 @@ router.put('/:id', async (req, res) => {
 });
 router.delete('/:postId', async (req, res) => {
     try {
-
         const result = await deletePost({ postId });
         res.status(200).send(result);
-
     } catch (error) {
         console.error(error);
         res.status(500).send(error);
