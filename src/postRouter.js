@@ -12,20 +12,18 @@ const {
 router.get('/all', async (req, res) => {
     try {
         const result = await getAllPosts();
-        return result;
-
-
+        res.status(200).send(result);
     } catch (error) {
         console.error(error);
         res.status(500).send(error);
     }
 });
-router.get('/:id', async (req, res) => {
+router.get('/:postId', async (req, res) => {
     try {
-        const { id } = req.params;
-        console.log(id);
-        const result = await getPostById({ id });
-        return result;
+        const { postId } = req.params;
+        console.log(postId);
+        const result = await getPostById({ postId });
+        res.status(200).send(result);
     } catch (error) {
 
         console.error(error);
@@ -37,7 +35,7 @@ router.post('/', async (req, res) => {
     try {
         const { title, content, categoryId } = req.body;
         const result = await createPost({ title, content, categoryId })
-        return result;
+        res.status(201).send(result);
     } catch (error) {
         console.error(error);
         res.status(500).send(error);
@@ -46,13 +44,21 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
     try {
 
+        const { title, content, categoryId } = req.body;
+        const { id } = req.params;
+        const result = await updatePost({ postId: id, title, content, categoryId })
+        res.status(204).send(result);
+
     } catch (error) {
         console.error(error);
         res.status(500).send(error);
     }
 });
-router.delete('/:id', async (req, res) => {
+router.delete('/:postId', async (req, res) => {
     try {
+
+        const result = await deletePost({postId});
+        res.status(200).send(result);
 
     } catch (error) {
         console.error(error);
@@ -61,7 +67,8 @@ router.delete('/:id', async (req, res) => {
 });
 router.get('/latest', async (req, res) => {
     try {
-
+        const result = "";
+        res.status(200).send(result);
     } catch (error) {
         console.error(error);
         res.status(500).send(error);
