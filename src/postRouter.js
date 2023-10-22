@@ -9,7 +9,7 @@ const {
     getLatestPosts,
 } = require('./postController');
 
-router.get('/all', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const result = await getAllPosts();
         res.status(200).send(result);
@@ -57,7 +57,7 @@ router.put('/:id', async (req, res) => {
 router.delete('/:postId', async (req, res) => {
     try {
 
-        const result = await deletePost({postId});
+        const result = await deletePost({ postId });
         res.status(200).send(result);
 
     } catch (error) {
