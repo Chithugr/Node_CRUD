@@ -1,5 +1,5 @@
 const { v4: uuidv4 } = require('uuid');
-const Post = require('./db/models/post');
+const Post = require('../db/models/post');
 
 
 

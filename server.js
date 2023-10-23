@@ -10,6 +10,60 @@ const dbUrl = process.env.dbUrl || "mongodb+srv://chaithragr409:Chaithragr%40190
 const Router = require("./src/index.js");
 const app = express();
 
+const swaggerUI = require('swagger-ui-express');
+const swaggerJsDoc = require("swagger-jsdoc");
+
+// const swaggerOptions = {
+//   definition: {
+//     openapi: "3.0.0",
+//     info: {
+//       title: "Library API",
+//       version: "1.0.0",
+//       description: "Swagger API in Nodejs",
+//       termsOfService: "http://example.com/terms/",
+//       contact: {
+//         name: "API Support",
+//         url: "http://example.com/support",
+//         email: "support@example.com",
+//       },
+//     },
+//   },
+
+//   servers: [
+//     {
+//       url: "http://localhost:3000",
+//       description: "My API Documemtation",
+//     },
+//   ],
+//   apis: ["./src/routes/*.js"]
+// }
+const options = {
+  definition: {
+    openapi: "3.0.0",
+    info: {
+      title: "Library API",
+      version: "1.0.0",
+      description: "A simple Express Library API",
+      termsOfService: "http://example.com/terms/",
+      contact: {
+        name: "API Support",
+        url: "http://www.exmaple.com/support",
+        email: "support@example.com",
+      },
+    },
+
+    servers: [
+      {
+        url: "http://localhost:3000",
+        description: "My API Documentation",
+      },
+    ],
+  },
+  apis: ["./src/routes/postRouter.js"],
+};
+
+
+
 
 connect(dbUrl).then(() => {
 
@@ -19,6 +73,9 @@ connect(dbUrl).then(() => {
     return res.send({ status: "Ok" });
   })
   app.use('/apis', Router);
+  const specs = swaggerJsDoc(options);
+
+  app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
 
   app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

@@ -7,7 +7,7 @@ const {
     updatePost,
     deletePost,
     getLatestPosts,
-} = require('./postController');
+} = require('../controller/postController');
 
 router.get('/', async (req, res) => {
     try {
@@ -18,6 +18,30 @@ router.get('/', async (req, res) => {
         res.status(500).send(error);
     }
 });
+
+/**
+ * @swagger
+ * /posts/{id}:
+ *   get:
+ *     summary: gets posts by id
+ *     tags: [Posts]
+ *     parameters:
+ *       - in : path
+ *         postId: id
+ *         description: id of post
+ *         schema:
+ *           type: string
+ *         required: true
+ *     responses:
+ *       200:
+ *         description: posts by its id
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Post'
+ *       400:
+ *         description: post can not be found
+ */
 router.get('/:postId', async (req, res) => {
     try {
         const { postId } = req.params;
